@@ -28,28 +28,61 @@ after((done) => {
 
 describe('Message API endpoints', () => {
     beforeEach((done) => {
-        // TODO: add any beforeEach code here
-        done()
+        // add any beforeEach code here
+        const sampleMessage = new Message({
+            message: 'Hello Jane',
+            _id: SAMPLE_MESSAGE_ID
+        })
+        sampleMessage.save()
+            .then(() => {
+                done()
+            })
     })
 
     afterEach((done) => {
-        // TODO: add any afterEach code here
-        done()
+        // add any afterEach code here
+        Message.deleteMany({ message: ['Hello Jane', 'steak for today']})
+            .then(() => {
+                done()
+            })
     })
 
     it('should load all messages', (done) => {
-        // TODO: Complete this
-        done()
+        // Completed this
+        chai.request(app)
+            .get('/messages')
+            .end((error, response) => {
+                if(error) done(error);
+                expect(response.body).to.be.deep.equal({
+                    message: 'Hello Jane'
+                });
+                done();
+            })
     })
 
     it('should get one specific message', (done) => {
         // TODO: Complete this
-        done()
+        chai.request(app)
+            .get('/messages/{messageId}')
+            .end((error, response) => {
+                if(error) done(error);
+                expect(response.body).to.bedefined();
+            })
+            done();
     })
 
     it('should post a new message', (done) => {
         // TODO: Complete this
-        done()
+        chai.request(app)
+            .post('/messages')
+            .end((error, request) => {
+                if(error) done(error);
+                expect(response.body).to.contain({
+                    message: "Hello Jane"
+                })
+                done();
+            })
+            
     })
 
     it('should update a message', (done) => {
@@ -62,3 +95,4 @@ describe('Message API endpoints', () => {
         done()
     })
 })
+
