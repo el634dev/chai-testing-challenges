@@ -1,6 +1,6 @@
 # API Testing Challenges
 
-Clone this repository, then run `npm install` to install all necessary packages.
+Clone this repository, then run `npm install` to install all necessary packages and dependencies.
 
 Completed all TODOs in `src/routes/message.js` and `src/test/message.js`. Then, ran tests to ensure that they pass.
 
